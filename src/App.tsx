@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import DinoGame from "./Game/index";
 
-function App() {
+const App: React.FC = () => {
+  const [isMobileWidth, setMobileWidth] = useState(0);
+  const [isMobileHeight, setMobileHeight] = useState(0);
+
+  useEffect(() => {
+    setMobileWidth(window.innerWidth);
+    setMobileHeight(window.innerHeight);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      className="App"
+      style={{
+        // 기기 최적화 사이즈
+        width: `${isMobileWidth}px`,
+        height: `${isMobileHeight}px`,
+      }}
+    >
+      <h1>Dino Game</h1>
+      <DinoGame />
     </div>
   );
-}
+};
 
 export default App;
